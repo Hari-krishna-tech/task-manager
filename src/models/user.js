@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-// const path = require('path')
-// require('dotenv').config({ path: path.resolve(__dirname, '../../config/dev.env') })
+
 
 
 

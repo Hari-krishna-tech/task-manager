@@ -3,8 +3,7 @@ const bodyParser = require('body-parser')
 require('./db/mongoose')
 const UserRouter = require('./routers/user')
 const TaskRouter = require('./routers/task')
-const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, '../config/dev.env') })
+
 
 
 // creating an express application
