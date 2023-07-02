@@ -3,21 +3,13 @@ const bodyParser = require('body-parser')
 require('./db/mongoose')
 const UserRouter = require('./routers/user')
 const TaskRouter = require('./routers/task')
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../config/dev.env') })
 
 
 // creating an express application
 const app = express()
 const port = process.env.PORT || 3000
-
-
-app.use((req, res, next) => {
-    
-    next()
-})
-
-// app.use((req, res, next) => {
-//     res.status(503).send('Site is currently down. Check back soon!')
-// })
 
 
 // middleware

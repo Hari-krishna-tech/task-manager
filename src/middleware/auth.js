@@ -1,11 +1,15 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../../config/dev.env') })
+
+
 
 
 const auth = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '') // remove the string 'Bearer ' from the token
-        const decoded = jwt.verify(token, 'thisismynewcourse') // verify the token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET) // verify the token
         if(!decoded) {
             throw new Error()
         }

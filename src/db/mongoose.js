@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../../config/dev.env') })
 
-const connectionURL = 'mongodb://127.0.0.1:27017/task-manager-api'
+
+const connectionURL = process.env.MONGODB_URL 
 
 
 

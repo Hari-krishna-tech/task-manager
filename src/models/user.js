@@ -2,6 +2,9 @@ const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../../config/dev.env') })
+
 
 
 const UserSchema = new mongoose.Schema({
@@ -48,7 +51,11 @@ const UserSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+
+    avatar: {
+        type: Buffer
+    }
 }, {
     timestamps:true
 })
@@ -65,7 +72,7 @@ UserSchema.virtual('tasks', {
 UserSchema.methods.generateAuthToken = async function() {
     const user = this
 
-    const token = jwt.sign( {_id: user._id.toString()  }, 'thisismynewcourse', { expiresIn: '7 days' } )
+    const token = jwt.sign( {_id: user._id.toString()  }, process.env.JWT_SECRET, { expiresIn: '7 days' } )
     user.tokens = user.tokens.concat({ token })
     await user.save()
     return token;
@@ -75,6 +82,7 @@ UserSchema.methods.toJSON = function() {
     const userObject = user.toObject()
     delete userObject.password
     delete userObject.tokens
+    delete userObject.avatar
     return userObject;
 
 }
