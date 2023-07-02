@@ -28,8 +28,8 @@ router.post('/users', async (req, res) => {
     try {
         await user.save() // instance method
         const token = await user.generateAuthToken() // instance method
+        res.status(201).send({ user, token })
        
-        res.send({ user, token })
     } catch(error) {
         res.status(400)
         res.send(error)

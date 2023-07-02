@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "DOTENV_CONFIG_PATH=./config/test.env jest --watch --runInBand --setupFiles=dotenv/config",
     "start": "node src/index.js",
     "dev": "nodemon -r dotenv/config src/index.js dotenv_config_path=./config/dev.env"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": [
+      "dotenv/config"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -23,6 +30,8 @@
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3"
   }
 }
